@@ -1,0 +1,7 @@
+.ipynb_checkpoints/*
+class_map.pbtxt
+dataset_roboflow/*
+dataset_sketch_it/*
+new_dataset/*
+train_and_test/*
+
