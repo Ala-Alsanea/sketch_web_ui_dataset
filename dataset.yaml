@@ -6,14 +6,13 @@ test: test # test images (optional)
 
 # Classes (80 COCO classes)
 names:
-  0: none
-  1: Button
-  2: CheckBox
-  3: Heading
-  4: Image
-  5: Label
-  6: Link
-  7: Paragraph
-  8: RadioButton
-  9: Select
-  10: TextBox
+  0: Button
+  1: CheckBox
+  2: Heading
+  3: Image
+  4: Label
+  5: Link
+  6: Paragraph
+  7: RadioButton
+  8: Select
+  9: TextBox
