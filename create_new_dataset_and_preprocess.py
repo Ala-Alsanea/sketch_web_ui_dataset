@@ -286,7 +286,7 @@ for i, item in enumerate(accpted_classes_list):
     classes.append({'name': item, 'id': i+1})
 
 
-with open('label_map.pbtxt', 'w') as f:
+with open(f'{path}/label_map.pbtxt', 'w') as f:
     for item in classes:
         f.write('item { \n')
         f.write('\tname:\'{}\'\n'.format(item['name']))
