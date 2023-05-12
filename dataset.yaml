@@ -1,0 +1,19 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ../sketch_web_ui_dataset  # dataset root dir
+train: train  # train images (relative to 'path') 128 images
+val: train  # val images (relative to 'path') 128 images
+test: test # test images (optional)
+
+# Classes (80 COCO classes)
+names:
+  0: none
+  1: Button
+  2: CheckBox
+  3: Heading
+  4: Image
+  5: Label
+  6: Link
+  7: Paragraph
+  8: RadioButton
+  9: Select
+  10: TextBox
