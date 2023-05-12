@@ -552,7 +552,7 @@ csv2coco(test_set.copy(), f'{path}/test/images/annotations.coco.json')
 # import tensorflow as tf
 
 
-class_map = label_map_util.load_labelmap('label_map.pbtxt')
+class_map = label_map_util.load_labelmap(f'{path}/label_map.pbtxt')
 class_map_dict = label_map_util.get_label_map_dict(class_map)
 
 # print(class_map_dict)
