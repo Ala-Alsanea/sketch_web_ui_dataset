@@ -1,0 +1,12 @@
+keras_retinanet
+torch
+tensorflow
+sklearn
+matplotlib
+PIL
+pandas
+numpy
+optparse
+torchvision
+
+
