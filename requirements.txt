@@ -1,11 +1,9 @@
-keras_retinanet
 torch
 tensorflow
+keras_retinanet
 sklearn
 matplotlib
 pandas
-numpy
-optparse
 torchvision
 
 
