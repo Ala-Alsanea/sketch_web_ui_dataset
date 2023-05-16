@@ -10,9 +10,9 @@ import os
 
 os.system(
     "pip3 install --user 'git+https://github.com/facebookresearch/detectron2.git'")
-os.system("pip3 install -r sketch_web_ui_dataset/requirements.txt")
+os.system("pip3 install -r requirements.txt")
 os.system(
-    "git clone https://github.com/tensorflow/models sketch_web_ui_dataset/models/.")
+    "git clone https://github.com/tensorflow/models ")
 os.system("")
 os.system("")
 os.system("")
@@ -22,7 +22,7 @@ os.system("")
 # linux
 if os.name == 'posix':
     os.system("apt install protobuf-compiler")
-    os.system("cd sketch_web_ui_dataset/models/research && protoc object_detection/protos/*.proto --python_out=. && cp object_detection/packages/tf2/setup.py . && python3 -m pip install .")
+    os.system("cd models/research && protoc object_detection/protos/*.proto --python_out=. && cp object_detection/packages/tf2/setup.py . && python3 -m pip install .")
     os.system("")
     os.system("")
     os.system("")
@@ -48,8 +48,8 @@ if os.name == 'nt':
 
 
 # val
-VERIFICATION_SCRIPT = os.path.join("sketch_web_ui_dataset",
-                                   'models', 'research', 'object_detection', 'builders', 'model_builder_tf2_test.py')
+VERIFICATION_SCRIPT = os.path.join(
+    'models', 'research', 'object_detection', 'builders', 'model_builder_tf2_test.py')
 # Verify Installation
 os.system(f"python3 {VERIFICATION_SCRIPT}")
 
