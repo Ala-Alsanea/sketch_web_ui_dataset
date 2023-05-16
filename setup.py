@@ -8,10 +8,10 @@
 
 import os
 
+os.system("pip3 install -r requirements.txt")
 os.system("git clone https://github.com/tensorflow/models ")
 os.system(
     "pip3 install --user 'git+https://github.com/facebookresearch/detectron2.git'")
-os.system("pip3 install -r requirements.txt")
 os.system("")
 os.system("")
 os.system("")
