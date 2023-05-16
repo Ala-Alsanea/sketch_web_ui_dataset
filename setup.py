@@ -23,7 +23,8 @@ os.system("")
 if os.name == 'posix':
     os.system("apt install protobuf-compiler")
     os.system("cd models/research && protoc object_detection/protos/*.proto --python_out=. && cp object_detection/packages/tf2/setup.py . && python3 -m pip install .")
-    os.system("")
+    os.system(
+        "pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117")
     os.system("")
     os.system("")
     os.system("")
@@ -46,6 +47,9 @@ if os.name == 'nt':
     os.system("")
     os.system("")
 
+
+os.system(f"pip3 uninstall -y numpy")
+os.system(f"pip3 install numpy")
 
 # val
 VERIFICATION_SCRIPT = os.path.join(
