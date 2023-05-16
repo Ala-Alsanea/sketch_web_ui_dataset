@@ -1,9 +1,9 @@
-torch
+# torch
 tensorflow
 keras_retinanet
-sklearn
-matplotlib
-pandas
+# sklearn
+# matplotlib
+# pandas
 torchvision
 
 
