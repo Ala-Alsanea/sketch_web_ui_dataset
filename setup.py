@@ -6,7 +6,6 @@
 # In[2]:
 
 
-import object_detection
 import os
 
 os.system(
