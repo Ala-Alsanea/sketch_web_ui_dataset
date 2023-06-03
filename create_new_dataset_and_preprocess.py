@@ -1,6 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+#  ```
+#  run the [ python3 create_new_dataset_and_preprocess.py . ]
+#  ```
+
+# In[ ]:
+
+
+# In[ ]:
+
+
 # In[1]:
 
 
@@ -302,21 +312,21 @@ new_dataset = new_dataset[new_dataset.label.isin(
 new_dataset
 
 
-# In[19]:
+# In[18]:
 
 
 copy2dri(destination=new_dataset_path, df=new_dataset, fromDir=[
          f'{path}/dataset_roboflow/new_train/', f'{path}/dataset_sketch_it/images/'])
 
 
-# In[20]:
+# In[19]:
 
 
 new_dataset = pd.read_csv(f'{path}/new_dataset/annotations.csv')
 new_dataset
 
 
-# In[21]:
+# In[20]:
 
 
 new_dataset[new_dataset['filename'] ==
@@ -325,7 +335,7 @@ new_dataset[new_dataset['filename'] ==
 
 # # show all object
 
-# In[26]:
+# In[21]:
 
 
 # coco
@@ -400,20 +410,20 @@ def csv2coco(data, save_json_path):
     json.dump(data_coco, open(save_json_path, "w"), indent=4)
 
 
-# In[23]:
+# In[22]:
 
 
 csv2coco(new_dataset.copy(), f'{path}/new_dataset/annotations.coco.json')
 
 
-# In[24]:
+# In[23]:
 
 
 DATA_SET_NAME = f'{path}/new_dataset/'
 ANNOTATIONS_FILE_NAME = "annotations.coco.json"
 
 
-# In[25]:
+# In[24]:
 
 
 # TRAIN SET
@@ -429,7 +439,7 @@ register_coco_instances(
 )
 
 
-# In[27]:
+# In[25]:
 
 
 [
@@ -440,7 +450,7 @@ register_coco_instances(
 ]
 
 
-# In[31]:
+# In[26]:
 
 
 metadata = MetadataCatalog.get(DATA_SET_NAME)
@@ -470,13 +480,13 @@ plt.show()
 
 # # spilt into train and test
 
-# In[32]:
+# In[27]:
 
 
 new_dataset.label.value_counts()
 
 
-# In[33]:
+# In[28]:
 
 
 if os.path.exists('train'):
@@ -497,33 +507,33 @@ for lbl in lbls:
     test_set = test_set.append(test, ignore_index=True)
 
 
-# In[34]:
+# In[29]:
 
 
 train_set
 
 
-# In[35]:
+# In[30]:
 
 
 test_set
 
 
-# In[36]:
+# In[31]:
 
 
 copy2dri(destination=f'{path}/train/images',
          df=train_set, fromDir=[new_dataset_path])
 
 
-# In[37]:
+# In[32]:
 
 
 copy2dri(destination=f'{path}/test/images',
          df=test_set, fromDir=[new_dataset_path])
 
 
-# In[38]:
+# In[33]:
 
 
 test_set = pd.read_csv(f'{path}/test/images/annotations.csv')
@@ -532,13 +542,13 @@ train_set = pd.read_csv(f'{path}/train/images/annotations.csv')
 
 # # create coco from csv
 
-# In[39]:
+# In[34]:
 
 
 csv2coco(train_set.copy(), f'{path}/train/images/annotations.coco.json')
 
 
-# In[40]:
+# In[35]:
 
 
 csv2coco(test_set.copy(), f'{path}/test/images/annotations.coco.json')
@@ -546,7 +556,7 @@ csv2coco(test_set.copy(), f'{path}/test/images/annotations.coco.json')
 
 # # create tf record
 
-# In[41]:
+# In[36]:
 
 
 # import tensorflow as tf
@@ -661,18 +671,19 @@ csv_2_tfrecord(csv_input=f'{path}/test/images/annotations.csv',
 
 # # to yolo format
 
-# In[42]:
+# In[40]:
 
 
 labels = {
     "train": os.path.join(f'{path}/train', "labels"),
     "test": os.path.join(f'{path}/test', "labels"),
+
 }
 for label in labels.values():
     os.makedirs(label, exist_ok=True)
 
 
-# In[43]:
+# In[41]:
 
 
 def csv_2_yolo(df, out_path, cocoAnnPath):
@@ -745,7 +756,7 @@ def csv_2_yolo(df, out_path, cocoAnnPath):
     print("done")
 
 
-# In[44]:
+# In[42]:
 
 
 train = pd.read_csv(f'{path}/train/images/annotations.csv')
@@ -757,7 +768,26 @@ csv_2_yolo(
     df=test, cocoAnnPath=f'{path}/test/images/annotations.coco.json', out_path=labels['test'])
 
 
-# In[ ]:
+# In[43]:
+
+
+# all img in yolo formate
+
+all_yolo_path = {
+    "all_img": os.path.join(f'{path}/all_yolo', "images"),
+    "all_label": os.path.join(f'{path}/all_yolo', "labels"),
+
+}
+
+for _path in all_yolo_path.values():
+    os.makedirs(_path, exist_ok=True)
+
+all_yolo = pd.read_csv(f'{path}/new_dataset/annotations.csv')
+
+copy2dri(destination=all_yolo_path["all_img"],
+         df=all_yolo, fromDir=[new_dataset_path])
+csv_2_yolo(df=all_yolo,
+           cocoAnnPath=f'{path}/new_dataset/annotations.coco.json', out_path=all_yolo_path['all_label'])
 
 
 # In[ ]:
