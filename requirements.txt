@@ -1,0 +1,9 @@
+# torch
+tensorflow
+keras_retinanet
+# sklearn
+# matplotlib
+# pandas
+torchvision
+
+
